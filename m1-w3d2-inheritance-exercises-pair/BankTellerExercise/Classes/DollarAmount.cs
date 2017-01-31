@@ -11,8 +11,8 @@ namespace BankTellerExercise.Classes
     // changing the value of a DollarAmount and having the bank account balance update as a result.
     public class DollarAmount
     {
-        private int totalAmountInCents;
-        
+        public int totalAmountInCents;
+
         /// <summary>
         /// Number of cents
         /// </summary>
@@ -93,14 +93,42 @@ namespace BankTellerExercise.Classes
         /// <param name="amountToAdd"></param>
         /// <returns>New Dollar Amount Value</returns>
         public DollarAmount Plus(DollarAmount amountToAdd)
-        {            
+        {
             int newTotal = this.totalAmountInCents + amountToAdd.totalAmountInCents;
 
             return new DollarAmount(newTotal);
         }
 
 
+        public override string ToString()
+        {
+            string results = "";
+            string stringCents = "";
 
+            if (this.Cents == 0)
+            {
+                stringCents = "00";
+            }
+            else if (this.Cents < 10)
+            {
+                stringCents = "0" + this.Cents.ToString();
+            }
+            else
+            {
+                stringCents = this.Cents.ToString();
+            }
+
+            if (!(IsNegative))
+            {
+                results = "$" + this.Dollars + "." + stringCents;
+            }
+            else
+            {
+                results = "$" + this.Dollars + "." + stringCents;
+            }
+
+            return results;
+        }
 
     }
 }
