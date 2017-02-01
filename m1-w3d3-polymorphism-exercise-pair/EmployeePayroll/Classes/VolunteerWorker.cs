@@ -6,7 +6,63 @@ using System.Threading.Tasks;
 
 namespace EmployeePayroll.Classes
 {
-    class VolunteerWorker
+    public class VolunteerWorker
     {
+        private string lastName;
+
+        private string firstName;
+
+
+        private int hoursWorked;
+
+        public int HoursWorked
+        {
+            get { return hoursWorked; }
+
+        }
+
+        public string FirstName
+        {
+            get { return firstName; }
+
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+
+        }
+
+        public VolunteerWorker(string firstName, string lastName)
+        {
+            if (!String.IsNullOrEmpty(firstName))
+            {
+                this.firstName = firstName;
+            }
+            else
+            {
+                this.firstName = "unknown";
+            }
+
+            if (!String.IsNullOrEmpty(firstName))
+            {
+                this.lastName = lastName;
+            }
+            else
+            {
+                this.lastName = "unknown";
+            }
+        }
+
+        public double CalculateWeeklyPay(int hoursWorked)
+        {
+            double weeklyPay = 0;
+            if (hoursWorked > 0)
+            {
+                this.hoursWorked = hoursWorked;
+                
+            }
+            return weeklyPay;
+        }
     }
 }

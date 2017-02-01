@@ -15,33 +15,76 @@ namespace EmployeePayroll.Classes
 
         private double annualSalary;
 
+        private int hoursWorked;
+
+        public int HoursWorked
+        {
+            get { return hoursWorked; }
+            
+        }
+
         public double AnnualSalary
         {
             get { return annualSalary; }
-            set { annualSalary = value; }
+            
         }
         
         public string FirstName
         {
             get { return firstName; }
-            set { firstName = value; }
+            
         }
   
         public string LastName
         {
             get { return lastName; }
-            set { lastName = value; }
+            
         }
 
         public SalaryWorker(double annualSalary, string firstName, string lastName)
         {
+            if (annualSalary > 0)
+            {
+                this.annualSalary = Math.Round(annualSalary,2);
+            }
+            else
+            {
+                this.annualSalary = 0;
+            }
+
+            if (!String.IsNullOrEmpty(firstName))
+            {
+                this.firstName = firstName;
+            }
+            else
+            {
+                this.firstName = "unknown";
+            }
+
+            if (!String.IsNullOrEmpty(firstName))
+            {
+                this.lastName = lastName;
+            }
+            else
+            {
+                this.lastName = "unknown";
+            }
+
             
         }
         public double CalculateWeeklyPay(int hoursWorked)
         {
-            double result = 0.0;
-
-            return result;
+            double weeklyPay = Math.Round((annualSalary/ 52), 2);
+            if (hoursWorked > 0)
+            {
+                this.hoursWorked = hoursWorked;
+            }
+            else
+            {
+                this.hoursWorked = 0;
+            }
+            
+            return weeklyPay ;
         }
 
 
