@@ -9,6 +9,7 @@ namespace Polymorphism.Tests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
