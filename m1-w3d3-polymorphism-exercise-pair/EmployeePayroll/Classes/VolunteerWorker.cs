@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeePayroll.Classes
 {
-    public class VolunteerWorker
+    public class VolunteerWorker: IWorker
     {
         private string lastName;
 

@@ -12,8 +12,9 @@ namespace EmployeePayroll.Classes
         string FirstName { get; }
 
         string LastName { get; }
-
+        int HoursWorked { get; }
         double CalculateWeeklyPay(int hoursWorked);
+
 
     }
 }
