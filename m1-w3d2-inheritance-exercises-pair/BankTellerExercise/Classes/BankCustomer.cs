@@ -10,6 +10,18 @@ namespace BankTellerExercise.Classes
     {
         private string name;
 
+        private bool isVip = false;
+
+        private DollarAmount totalCustBalance = new DollarAmount(0);
+
+        public DollarAmount TotalCustBalance
+        {
+            get { return totalCustBalance; }
+        }
+        public bool IsVip
+        {
+            get { return isVip; }
+        }
         public string Name
         {
             get { return name; }
@@ -45,6 +57,16 @@ namespace BankTellerExercise.Classes
             List<BankAccount> _bankAccountList = accounts.ToList();
             _bankAccountList.Add(newAccount);
             accounts = _bankAccountList.ToArray();
+
+            totalCustBalance = totalCustBalance.Plus(newAccount.Balance);
+
+            if (totalCustBalance.totalAmountInCents >= 2500000)
+            {
+                isVip = true;
+            }
+
         }
+
+
     }
 }
