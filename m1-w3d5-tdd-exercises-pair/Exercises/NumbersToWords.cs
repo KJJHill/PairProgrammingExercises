@@ -19,36 +19,39 @@ namespace TDDExercises
                 {20, "twenty" }, {30, "thirty" }, {40, "forty" }, {50, "fifty" }, {60, "sixty" }, {70, "seventy" }, {80, "eighty" }, {90, "ninety" }
             };
 
-
         public string ConvertToWords(int numberToConvert)
         {
             string numberWordString = "";
 
-            //numberToConvert == Enumerable.Range(0, 99)
             if (numberToConvert >= 0 && numberToConvert <= 19)
             {
                 numberWordString = numberedWords[numberToConvert];
             }
             else if (numberToConvert >= 20 && numberToConvert <= 99)
             {
-                numberWordString = getTensAndOnes(numberToConvert);
+                numberWordString = getTwoDigitWords(numberToConvert);
             }
             else if (numberToConvert >= 100 && numberToConvert <= 999)
             {
-                numberWordString = getHundreds(numberToConvert);
-
+                numberWordString = getThreeDigitWords(numberToConvert);
             }
-            else if (numberToConvert >= 1000 && numberToConvert <= 9999)
+            else if (numberToConvert >= 1000 && numberToConvert <= 19999)
             {
                 numberWordString = getThousands(numberToConvert);
-
             }
-
+            else if (numberToConvert >= 20000 && numberToConvert <= 99999)
+            {
+                numberWordString = getTenThousands(numberToConvert);
+            }
+            else if (numberToConvert >= 100000 && numberToConvert <= 999999)
+            {
+                numberWordString = getHundredThousand(numberToConvert);
+            }
 
             return numberWordString;
         }
 
-        public string getTensAndOnes(int twoDigitInt)
+        private string getTwoDigitWords(int twoDigitInt)
         {
             string twoDigitString = "";
 
@@ -67,52 +70,102 @@ namespace TDDExercises
             return twoDigitString;
         }
 
-        public string getHundreds(int threeDigitInt)
+        private string getThreeDigitWords(int threeDigitInt)
         {
             string threeDigitString = "";
             int hundredsPlace = threeDigitInt / 100;
-            int tensAndOnes = threeDigitInt % 100;
+            int hundredsRemainder = threeDigitInt % 100;
 
-            if (threeDigitInt % 100 == 0)
+            if (hundredsRemainder == 0)
             {
                 threeDigitString = numberedWords[hundredsPlace] + HUNDRED;
             }
-            else if (tensAndOnes <= 19)
+            else if (hundredsRemainder <= 19)
             {
-                threeDigitString = numberedWords[hundredsPlace] + HUNDRED + AND + numberedWords[tensAndOnes];
+                threeDigitString = numberedWords[hundredsPlace] + HUNDRED + AND + numberedWords[hundredsRemainder];
             }
             else
             {
-                threeDigitString = numberedWords[hundredsPlace] + HUNDRED + AND + getTensAndOnes(tensAndOnes);
+                threeDigitString = numberedWords[hundredsPlace] + HUNDRED + AND + getTwoDigitWords(hundredsRemainder);
             }
 
             return threeDigitString;
         }
 
-        public string getThousands(int fourDigitInt)
+        private string getThousands(int fourDigitInt)
         {
             string fourDigitString = "";
             int thousandsPlace = fourDigitInt / 1000;
-            int hundreds = fourDigitInt % 1000;        
+            int thousandsRemainder = fourDigitInt % 1000;
 
-            if (fourDigitInt % 1000 == 0)
+            if (thousandsRemainder == 0)
             {
                 fourDigitString = numberedWords[thousandsPlace] + THOUSAND;
             }
-            else if (hundreds <= 19)
+            else if (thousandsRemainder <= 19)
             {
-                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + numberedWords[hundreds];
+                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + numberedWords[thousandsRemainder];
             }
-            else if (hundreds <= 99)
+            else if (thousandsRemainder <= 99)
             {
-                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + getTensAndOnes(hundreds);
+                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + getTwoDigitWords(thousandsRemainder);
             }
             else
             {
-                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + getHundreds(hundreds);
+                fourDigitString = numberedWords[thousandsPlace] + THOUSAND + AND + getThreeDigitWords(thousandsRemainder);
             }
 
             return fourDigitString;
+        }
+
+        private string getTenThousands(int fiveDigitInt)
+        {
+            string fiveDigitString = "";
+            int tenThousandsPlace = fiveDigitInt / 1000;
+            int tenThousandRemainder = fiveDigitInt % 1000;
+
+            if (tenThousandRemainder == 0)
+            {
+                fiveDigitString = getTwoDigitWords(tenThousandsPlace) + THOUSAND;
+            }
+            else if (tenThousandRemainder <= 19)
+            {
+                fiveDigitString = getTwoDigitWords(tenThousandsPlace) + THOUSAND + AND + numberedWords[tenThousandRemainder];
+            }
+            else if (tenThousandRemainder <= 99)
+            {
+                fiveDigitString = getTwoDigitWords(tenThousandsPlace) + THOUSAND + AND + getTwoDigitWords(tenThousandRemainder);
+            }
+            else
+            {
+                fiveDigitString = getTwoDigitWords(tenThousandsPlace) + THOUSAND + AND + getThreeDigitWords(tenThousandRemainder);
+            }
+            return fiveDigitString;
+        }
+
+        private string getHundredThousand(int sixDigitInt)
+        {
+            string sixDigitString = "";
+            int hundredThousandPlace = sixDigitInt / 1000;
+            int hundredThousandRemainder = sixDigitInt % 1000;
+
+            if (hundredThousandRemainder == 0)
+            {
+                sixDigitString = getThreeDigitWords(hundredThousandPlace) + THOUSAND;
+            }
+            else if (hundredThousandRemainder <= 19)
+            {
+                sixDigitString = getThreeDigitWords(hundredThousandPlace) + THOUSAND + AND + numberedWords[hundredThousandRemainder];
+            }
+            else if (hundredThousandRemainder <= 99)
+            {
+                sixDigitString = getThreeDigitWords(hundredThousandPlace) + THOUSAND + AND + getTwoDigitWords(hundredThousandRemainder);
+            }
+            else
+            {
+                sixDigitString = getThreeDigitWords(hundredThousandPlace) + THOUSAND + AND + getThreeDigitWords(hundredThousandRemainder);
+            }
+            return sixDigitString;
         }
     }
 

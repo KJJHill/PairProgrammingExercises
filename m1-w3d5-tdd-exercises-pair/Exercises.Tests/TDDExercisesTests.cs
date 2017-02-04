@@ -65,6 +65,32 @@ namespace TDDExercises.Tests
             Assert.AreEqual("four thousand and three hundred and six", numberInputTest.ConvertToWords(4306));
             Assert.AreEqual("four thousand and three hundred and sixteen", numberInputTest.ConvertToWords(4316));
             Assert.AreEqual("four thousand and two hundred and sixty-six", numberInputTest.ConvertToWords(4266));
+            Assert.AreEqual("ten thousand", numberInputTest.ConvertToWords(10000));
+            Assert.AreEqual("eighteen thousand and six", numberInputTest.ConvertToWords(18006));
+
+            Assert.AreEqual("thirty-three thousand", numberInputTest.ConvertToWords(33000));
+            Assert.AreEqual("thirty-three thousand and one", numberInputTest.ConvertToWords(33001));
+            Assert.AreEqual("thirty-three thousand and eighteen", numberInputTest.ConvertToWords(33018));
+            Assert.AreEqual("thirty-three thousand and twenty-eight", numberInputTest.ConvertToWords(33028));
+            Assert.AreEqual("thirty-three thousand and one hundred", numberInputTest.ConvertToWords(33100));
+            Assert.AreEqual("thirty-three thousand and one hundred and one", numberInputTest.ConvertToWords(33101));
+            Assert.AreEqual("thirty-three thousand and one hundred and thirteen", numberInputTest.ConvertToWords(33113));
+            Assert.AreEqual("thirty-three thousand and one hundred and forty-five", numberInputTest.ConvertToWords(33145));
+
+            Assert.AreEqual("one hundred thousand", numberInputTest.ConvertToWords(100000));
+            Assert.AreEqual("one hundred and one thousand", numberInputTest.ConvertToWords(101000));
+            Assert.AreEqual("one hundred and eleven thousand", numberInputTest.ConvertToWords(111000));
+            Assert.AreEqual("three hundred and thirteen thousand", numberInputTest.ConvertToWords(313000));
+            Assert.AreEqual("three hundred and twenty-three thousand", numberInputTest.ConvertToWords(323000));
+
+            Assert.AreEqual("one hundred thousand and one", numberInputTest.ConvertToWords(100001));
+            Assert.AreEqual("one hundred thousand and eighteen", numberInputTest.ConvertToWords(100018));
+            Assert.AreEqual("one hundred thousand and twenty-one", numberInputTest.ConvertToWords(100021));
+
+            Assert.AreEqual("three hundred and twenty-three thousand and one hundred", numberInputTest.ConvertToWords(323100));
+            Assert.AreEqual("three hundred and twenty-three thousand and one hundred and one", numberInputTest.ConvertToWords(323101));
+            Assert.AreEqual("three hundred and twenty-three thousand and one hundred and eighteen", numberInputTest.ConvertToWords(323118));
+            Assert.AreEqual("three hundred and twenty-three thousand and six hundred and forty-five", numberInputTest.ConvertToWords(323645));
 
         }
     }
