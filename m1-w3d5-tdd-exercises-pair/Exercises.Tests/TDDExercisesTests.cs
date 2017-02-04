@@ -50,7 +50,7 @@ namespace TDDExercises.Tests
             Assert.AreEqual("sixty", numberInputTest.ConvertToWords(60));
             Assert.AreEqual("seventy", numberInputTest.ConvertToWords(70));
             Assert.AreEqual("eighty", numberInputTest.ConvertToWords(80));
-            Assert.AreEqual("ninety", numberInputTest.ConvertToWords(90));
+            Assert.AreEqual("ninety-nine", numberInputTest.ConvertToWords(99));
 
             Assert.AreEqual("three hundred", numberInputTest.ConvertToWords(300));
             Assert.AreEqual("three hundred and one", numberInputTest.ConvertToWords(301));
