@@ -80,9 +80,9 @@ namespace TDDExercises
             }
             else
             {
-                int tensRemainder;
-                int tensPlace = (Math.DivRem(twoDigitInt, 10, out tensRemainder)) * 10;
-                twoDigitString += numberedWords[tensPlace] + "-" + numberedWords[tensRemainder];
+                int remainder;
+                int tensPlace = (Math.DivRem(twoDigitInt, 10, out remainder)) * 10;
+                twoDigitString += numberedWords[tensPlace] + "-" + numberedWords[remainder];
             }
 
             return twoDigitString;
@@ -90,13 +90,13 @@ namespace TDDExercises
 
         private string GetThreeDigitWords(int threeDigitInt)
         {
-            int hundredsRemainder;
-            int hundredsPlace = (Math.DivRem(threeDigitInt, 100, out hundredsRemainder));
+            int remainder;
+            int hundredsPlace = (Math.DivRem(threeDigitInt, 100, out remainder));
             string threeDigitString = numberedWords[hundredsPlace] + HUNDRED;
 
-            if (hundredsRemainder != 0)
+            if (remainder != 0)
             {
-                threeDigitString += GetRestOfWordString(hundredsRemainder);
+                threeDigitString += GetRestOfWordString(remainder);
             }
             return threeDigitString;
         }
