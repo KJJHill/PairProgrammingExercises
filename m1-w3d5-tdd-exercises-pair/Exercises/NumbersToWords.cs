@@ -24,11 +24,7 @@ namespace TDDExercises
             string numberWordString = "";
             int remainder;
 
-            if (NumberIsInRange(numberToConvert, 0, 19))
-            {
-                numberWordString = numberedWords[numberToConvert];
-            }
-            else if (NumberIsInRange(numberToConvert, 20, 99))
+            if (NumberIsInRange(numberToConvert, 0, 99))
             {
                 numberWordString = GetTwoDigitWords(numberToConvert);
             }
@@ -40,31 +36,19 @@ namespace TDDExercises
             {
                 int thousandsPlace = (Math.DivRem(numberToConvert, 1000, out remainder));
                 numberWordString = numberedWords[thousandsPlace] + THOUSAND; ;
-
-                if (remainder != 0)
-                {
-                    numberWordString += GetRestOfWordString(remainder);
-                }
+                numberWordString += GetRestOfWordString(remainder);
             }
             else if (NumberIsInRange(numberToConvert, 20000, 99999))
             {
                 int tenThousandsPlace = (Math.DivRem(numberToConvert, 1000, out remainder));
                 numberWordString = GetTwoDigitWords(tenThousandsPlace) + THOUSAND;
-
-                if (remainder != 0)
-                {
-                    numberWordString += GetRestOfWordString(remainder);
-                }
+                numberWordString += GetRestOfWordString(remainder);
             }
             else if (NumberIsInRange(numberToConvert, 100000, 999999))
             {
                 int hundredThousandPlace = (Math.DivRem(numberToConvert, 1000, out remainder));
                 numberWordString = GetThreeDigitWords(hundredThousandPlace) + THOUSAND;
-
-                if (remainder != 0)
-                {
-                    numberWordString += GetRestOfWordString(remainder);
-                }
+                numberWordString += GetRestOfWordString(remainder);
             }
 
             return numberWordString;
@@ -74,7 +58,7 @@ namespace TDDExercises
         {
             string twoDigitString = "";
 
-            if (twoDigitInt % 10 == 0)
+            if (twoDigitInt % 10 == 0 || twoDigitInt <= 19)
             {
                 twoDigitString = numberedWords[twoDigitInt];
             }
@@ -93,20 +77,16 @@ namespace TDDExercises
             int remainder;
             int hundredsPlace = (Math.DivRem(threeDigitInt, 100, out remainder));
             string threeDigitString = numberedWords[hundredsPlace] + HUNDRED;
-
-            if (remainder != 0)
-            {
-                threeDigitString += GetRestOfWordString(remainder);
-            }
+            threeDigitString += GetRestOfWordString(remainder);
             return threeDigitString;
         }
 
         private string GetRestOfWordString(int remainderValue)
         {
             string restOfWordString = "";
-            if (remainderValue <= 19)
+            if (remainderValue == 0)
             {
-                restOfWordString += AND + numberedWords[remainderValue];
+                //return the empty string
             }
             else if (remainderValue <= 99)
             {
